@@ -50,7 +50,7 @@ class Transaction(BaseModel):
     date_requested: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         json_encoders = {
             datetime: lambda v: (
                 v.replace(tzinfo=pytz.utc) if v.tzinfo is None else v
@@ -73,7 +73,7 @@ class history(BaseModel):
     change_at:datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         json_encoders = {
             datetime: lambda v: (
                 v.replace(tzinfo=pytz.utc) if v.tzinfo is None else v
