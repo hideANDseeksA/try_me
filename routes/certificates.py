@@ -185,7 +185,7 @@ async def get_summary(db: asyncpg.Connection = Depends(get_db)
   COUNT(*) AS total_requests,
   COUNT(*) FILTER (WHERE status = 'Pending') AS pending_count,
   COUNT(*) FILTER (WHERE status = 'On Process') AS on_process_count,
-  COUNT(*) FILTER (WHERE status = 'Ready to Claim') AS ready_to_claim_count
+  COUNT(*) FILTER (WHERE status = 'Ready To Claim') AS ready_to_claim_count
 FROM certificate_transactions;
 
        
