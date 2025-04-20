@@ -6,6 +6,13 @@ import bcrypt, random, logging
 from datetime import datetime, timedelta
 import jwt
 import asyncpg
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+JWT_SECRET = os.getenv("JWT_SECRET")
+JWT_ALGORITHM = os.getenv("JWT_ALGORITHM")
+
 router = APIRouter()
 
 @router.post("/api/create_user")
@@ -98,8 +105,7 @@ async def verification(user: verificationRequest, db=Depends(get_db)):
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
-JWT_SECRET = "Hsk2f7hKgshO8s1xkP_4PQoK27RhyYscXzdKv6pCT5IGd2tHQdEZcfbJXJbwLuJvYkT8Gr1Ujyk"
-JWT_ALGORITHM = "HS256"
+
 
 def create_access_token(data: dict, expires_delta: timedelta = timedelta(hours=4)):
     to_encode = data.copy()
